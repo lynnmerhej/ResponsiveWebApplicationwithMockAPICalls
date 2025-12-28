@@ -1,0 +1,52 @@
+.app-header {
+  margin-left: 220px; /* for desktop sidebar */
+  padding: 20px;
+  background-color: #f5f5f5;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* good for adding buttons/icons later */
+  position: sticky; /* stays on top when scrolling */
+  top: 0;
+  z-index: 100;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #111827; /* better contrast for readability */
+}
+
+/* Mobile */
+@media (max-width: 1024px) {
+  .app-header {
+    margin-left: 60px; /* smaller sidebar width for tablets */
+    padding: 15px 20px;
+  }
+
+  .app-header h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-header {
+    margin-left: 0; /* mobile: full-width header */
+    padding: 12px 15px;
+  }
+
+  .app-header h1 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header {
+    padding: 10px 12px;
+  }
+
+  .app-header h1 {
+    font-size: 1.1rem;
+  }
+}

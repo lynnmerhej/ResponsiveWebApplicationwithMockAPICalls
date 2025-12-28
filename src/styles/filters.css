@@ -1,0 +1,124 @@
+.filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .filters input[type="text"] {
+    padding: 0.6rem 0.8rem;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    background: white;
+    color: #020617;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .filters input[type="text"]:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 8px rgba(99, 102, 241, 0.35);
+  }
+  
+  .filters label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #475569;
+    font-size: 0.9rem;
+  }
+  
+  .filters-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+    background: #f3f4f6;
+    padding: 15px 20px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+  
+  /* Search input */
+  .filters-bar input[type="text"] {
+    flex: 1;
+    min-width: 150px; /* prevents too small on mobile */
+    padding: 10px 15px;
+    border-radius: 50px;
+    border: 1px solid #d1d5db;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+  
+  .filters-bar input[type="text"]:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 8px rgba(99, 102, 241, 0.35);
+  }
+  
+  /* Stock toggle */
+  .stock-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  
+  .stock-toggle input {
+    accent-color: var(--primary);
+    width: 18px;
+    height: 18px; /* slightly bigger for mobile touch */
+  }
+  
+  /* Price slider */
+  .price-range {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap; /* ensures stacking on small screens */
+  }
+  
+  .price-range input {
+    width: 100px;
+    max-width: 100%; /* responsive for mobile */
+    padding: 8px;
+    border-radius: 12px;
+    border: 1px solid #d1d5db;
+    outline: none;
+  }
+  
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .filters-bar {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+      padding: 10px 15px;
+    }
+  
+    .filters-bar input[type="text"] {
+      flex: none;
+      width: 100%;
+    }
+  
+    .price-range {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+  
+    .stock-toggle {
+      gap: 6px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .filters label {
+      font-size: 0.85rem;
+    }
+  
+    .price-range input {
+      width: 100%;
+    }
+  }
+  

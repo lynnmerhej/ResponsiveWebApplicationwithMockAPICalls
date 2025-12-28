@@ -1,0 +1,148 @@
+/* --- Desktop Sidebar --- */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 220px;
+  background: var(--bg-soft);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  transition: transform 0.3s ease;
+  z-index: 100;
+}
+
+.sidebar-logo h2 {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.sidebar-nav {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.nav-item {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 1.1rem;
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  background-color: var(--primary);
+}
+
+.sidebar-logout {
+  margin-top: 20px;
+}
+
+.logout-btn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  border: none;
+  border-radius: 8px;
+  color: var(--text);
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  filter: brightness(1.1);
+}
+
+/* --- Mobile Hamburger Button --- */
+.mobile-menu-btn {
+  display: none;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  background: var(--primary);
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 150;
+  color: white;
+  font-size: 1.3rem;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 120;
+}
+
+.overlay.active {
+  display: block;
+}
+
+/* --- Optimized Mobile Navigation --- */
+@media (max-width: 768px) {
+  /* Fix the sidebar drawer */
+  .sidebar {
+    width: 260px; /* Slightly wider for better text fit */
+    transform: translateX(-100%);
+    box-shadow: none;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 200; /* Higher than header */
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Create a clean top bar for mobile */
+  .mobile-header {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: var(--bg-soft);
+    border-bottom: 1px solid var(--border);
+    padding: 0 15px;
+    z-index: 150;
+  }
+
+  /* Adjust the menu button to sit inside the header */
+  .mobile-menu-btn {
+    display: flex;
+    position: static; /* Remove absolute positioning */
+    margin-right: 15px;
+    background: var(--primary);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Fix the text cutting off ("ducts" issue) */
+  .header-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* IMPORTANT: Push main content down so it doesn't hide under the fixed header */
+  .main-content {
+    margin-left: 0 !important;
+    padding-top: 80px !important; /* Adjust based on header height */
+  }
+}

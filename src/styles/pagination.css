@@ -1,0 +1,32 @@
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 0;
+    min-height: 72px; /* keeps pagination in place */
+    position: sticky;
+    bottom: 0;
+    background-color: #ffffff; /* match products page */
+    z-index: 10;
+  }
+  
+  /* Page buttons */
+  .page-btn {
+    min-width: 42px;
+    height: 42px;
+    border-radius: 999px;
+    border: none;
+    background-color: #f3f4f6;
+    color: #111827;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  }
+  
+  /* Active page gradient */
+  .page-btn.active {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    color: white;
+  

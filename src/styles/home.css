@@ -1,0 +1,112 @@
+.home-page {
+  margin-left: 220px;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+}
+
+/* KEEPING YOUR ORIGINAL BANNER STYLE */
+.banner {
+  width: 100%;
+  padding: 80px 20px;
+  text-align: center;
+  border-radius: 16px;
+  margin-bottom: 40px;
+  /* Your Electronics Image */
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.1)
+    ),
+    url("https://images.pexels.com/photos/3373736/pexels-photo-3373736.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 Products on Desktop */
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+/* FIXING THE IMAGE GLITCH */
+.product-img-holder {
+  width: 100%;
+  height: 180px; /* Forced height ensures images don't disappear */
+  background-color: #f9fafb;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.product-img-holder img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Prevents stretching */
+  display: block;
+}
+
+.home-product-card {
+  text-align: center;
+}
+
+.home-product-card h3 {
+  font-size: 1rem;
+  color: #111827;
+  margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.price {
+  font-weight: 700;
+  color: #6366f1;
+}
+
+.home-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.view-more-btn {
+  padding: 12px 35px;
+  background: linear-gradient(90deg, #6366f1, #2dd4bf);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* MOBILE FIXES */
+@media (max-width: 1024px) {
+  .home-page {
+    margin-left: 0;
+    padding-top: 80px;
+  }
+  .featured-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .featured-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .product-img-holder {
+    height: 140px;
+  }
+  .banner {
+    padding: 40px 15px;
+  }
+}
