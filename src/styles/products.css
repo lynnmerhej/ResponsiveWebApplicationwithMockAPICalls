@@ -1,172 +1,147 @@
 .products-page {
-  margin-left: 220px; /* desktop sidebar */
   padding: 20px;
   min-height: 100vh;
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  transition: margin 0.3s ease; /* smooth sidebar adjustments */
+  transition: margin 0.3s ease;
+  box-sizing: border-box;
 }
 
 .products-container {
   flex: 1;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
-/* Grid layout */
-.grid {
+
+.grids {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
   margin-bottom: 30px;
-  flex-grow: 1;
 }
 
-/* Product card */
+
 .product-card {
   background-color: #f9fafb;
-  border-radius: 16px;
-  padding: 15px;
+  border-radius: 12px;
+  padding: 12px; 
   text-align: center;
   color: #111827;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 320px; /* consistent card height */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  height: 100%; 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border: 1px solid #f3f4f6; 
 }
 
 .product-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
 }
 
 .product-card img {
   width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 10px;
+  height: 160px;
+  object-fit: contain; 
+  border-radius: 8px;
+  margin-bottom: 12px;
+  background: white; 
+  padding: 5px;
 }
 
-/* Status messages */
+.product-card h3 {
+  font-size: 1rem;
+  margin: 0 0 5px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-card p {
+  font-weight: bold;
+  color: var(--primary, #6366f1);
+  margin: 0;
+}
+
 .status {
   text-align: center;
   font-size: 1.2rem;
   color: #111827;
+  margin-top: 50px;
 }
 
-.status.error {
-  color: #ef4444;
-}
-
-/* Fade-in animation */
-.fade-in {
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Pagination container */
 .pagination-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  padding: 25px 0;
-  min-height: 72px; /* prevents layout shift */
-  flex-wrap: wrap; /* wraps on mobile */
-  background-color: #ffffff;
-  z-index: 10;
+  gap: 8px;
+  padding: 20px 0;
+  flex-wrap: wrap;
 }
 
-/* Page buttons */
 .page-btn {
-  min-width: 42px;
-  height: 42px;
-  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
   border: none;
   background-color: #f3f4f6;
   color: #111827;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.25s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  transition: all 0.2s ease;
 }
 
-.page-btn:hover,
-.page-btn:focus {
-  background-color: #e5e7eb;
-  outline: none;
-}
-
+.page-btn:hover { background-color: #e5e7eb; }
 .page-btn.active {
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  background: linear-gradient(90deg, #6366f1, #2dd4bf);
   color: white;
 }
 
-/* Mobile responsiveness */
+
 @media (max-width: 1024px) {
   .products-page {
-    margin-left: 60px;
-    padding: 15px;
-  }
-
-  .grid {
-    gap: 15px;
+    margin-left: 0; 
+    width: 100%;
   }
 }
 
 @media (max-width: 768px) {
   .products-page {
-    margin-left: 0;
-    /* This MUST be equal to or greater than your mobile header height */
-    padding: 85px 15px 100px 15px;
+    margin-left: 0 !important;
+    width: 100% !important;
+    padding: 25px 15px 40px 15px !important;
   }
 
-  .grid {
-    gap: 12px;
+  .grids {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important; 
+    gap: 12px !important;
   }
 
   .product-card {
-    height: auto; /* allow flexible height */
-  }
-
-  .product-card img {
-    height: 130px;
-  }
-
-  .page-btn {
-    min-width: 36px;
-    height: 36px;
-    font-size: 0.9rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .grid {
-    gap: 10px;
+    padding: 10px; 
+    min-height: 260px; 
   }
 
   .product-card img {
     height: 120px;
+    margin-bottom: 8px;
   }
 
-  .page-btn {
-    min-width: 32px;
-    height: 32px;
-    font-size: 0.85rem;
+  .product-card h3 {
+    font-size: 0.9rem; 
+  }
+  
+  .product-card p {
+    font-size: 0.95rem;
+  }
+  
+  .pagination-container {
+    gap: 5px;
   }
 }

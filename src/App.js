@@ -10,15 +10,26 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
+        
+        {/* === PUBLIC ROUTES === */}
+        {/* Rendered stand-alone without the Sidebar/Header layout */}
         <Route path="/login" element={<Login />} />
 
+        {/* === PROTECTED DASHBOARD ROUTES === */}
+        {/* 1. Auth Guard: Checks for token first */}
         <Route element={<ProtectedRoute />}>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="products" element={<Products />} />
-            <Route path="products/:id" element={<ProductDetails />} />
+          
+          {/* 2. Shared Layout: Applies Sidebar, Header, and main content margins */}
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<Products />} />
+            
+            {/* Dynamic route parameter (:id) for specific product fetching */}
+            <Route path="/products/:id" element={<ProductDetails />} />
           </Route>
+          
         </Route>
+
       </Routes>
     </BrowserRouter>
   );

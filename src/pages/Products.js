@@ -6,23 +6,26 @@ import { fetchProducts } from "../services/productService";
 import "../styles/products.css";
 
 export default function Products() {
+  // Data state
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Filter & Sort state
   const [search, setSearch] = useState("");
   const [inStock, setInStock] = useState(false);
   const [priceRange, setPriceRange] = useState({ min: "", max: "" });
   const [sortBy, setSortBy] = useState("priceDesc");
+  
+  // Pagination state
   const [page, setPage] = useState(1);
-
-  const ITEMS_PER_PAGE = 12;
+  const ITEMS_PER_PAGE = 10;
 
   useEffect(() => {
     setLoading(true);
     fetchProducts()
       .then((data) => {
-        // Sort by price descending initially
+        // Apply default sort (Price High -> Low) immediately on load
         const sorted = data.sort((a, b) => b.price - a.price);
         setProducts(sorted);
         setError(null);
@@ -31,6 +34,8 @@ export default function Products() {
       .finally(() => setLoading(false));
   }, []);
 
+  // Complex filtering logic wrapped in useMemo to prevent expensive recalculations on every render.
+  // This only runs when dependencies (products, search, sort, etc.) change.
   const filteredProducts = useMemo(() => {
     return products
       .filter((product) =>
@@ -59,8 +64,11 @@ export default function Products() {
       });
   }, [products, search, inStock, priceRange, sortBy]);
 
+  // Client-side pagination logic: Calculate slice indices based on current page
   const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
   const startIndex = (page - 1) * ITEMS_PER_PAGE;
+  
+  // The actual subset of products to display on screen
   const paginatedProducts = filteredProducts.slice(
     startIndex,
     startIndex + ITEMS_PER_PAGE
@@ -71,6 +79,7 @@ export default function Products() {
 
   return (
     <div className="products-page">
+      {/* Filter Sidebar/Top Bar */}
       <Filters
         search={search}
         setSearch={setSearch}
@@ -81,12 +90,16 @@ export default function Products() {
         sortBy={sortBy}
         setSortBy={setSortBy}
       />
+      
       <div className="products-container">
-        <div className="grid fade-in">
+        {/* Product Grid - Renders only the sliced data */}
+        <div className="grids fade-in">
           {paginatedProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
+        
+        {/* Pagination Controls */}
         <Pagination
           total={filteredProducts.length}
           perPage={ITEMS_PER_PAGE}

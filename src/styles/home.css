@@ -1,45 +1,66 @@
+
 .home-page {
-  margin-left: 220px;
   padding: 20px;
   min-height: 100vh;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  background-color: #ffffff;
+  box-sizing: border-box;
 }
 
-/* KEEPING YOUR ORIGINAL BANNER STYLE */
 .banner {
   width: 100%;
   padding: 80px 20px;
   text-align: center;
   border-radius: 16px;
   margin-bottom: 40px;
-  /* Your Electronics Image */
-  background-image: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0.7),
-      rgba(0, 0, 0, 0.1)
-    ),
+  background-image: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.3)),
     url("https://images.pexels.com/photos/3373736/pexels-photo-3373736.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
   background-size: cover;
   background-position: center;
   color: #ffffff;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.banner h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
 }
 
 .featured-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 5 Products on Desktop */
+  grid-template-columns: repeat(5, 1fr);
   gap: 20px;
   margin-bottom: 40px;
 }
 
-/* FIXING THE IMAGE GLITCH */
+.home-product-card {
+  background: #ffffff;
+  border: 1px solid #f3f4f6;
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.home-product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  border-color: #e5e7eb;
+}
+
 .product-img-holder {
   width: 100%;
-  height: 180px; /* Forced height ensures images don't disappear */
-  background-color: #f9fafb;
-  border-radius: 12px;
-  margin-bottom: 15px;
+  height: 160px; 
+  background-color: #f9fafb; 
+  border-radius: 8px;
+  margin-bottom: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,34 +68,40 @@
 }
 
 .product-img-holder img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain; /* Prevents stretching */
-  display: block;
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
 }
 
-.home-product-card {
-  text-align: center;
+.home-product-card:hover .product-img-holder img {
+  transform: scale(1.08); 
 }
 
 .home-product-card h3 {
-  font-size: 1rem;
-  color: #111827;
+  font-size: 0.95rem;
+  color: #1f2937;
   margin-bottom: 8px;
-  white-space: nowrap;
+  line-height: 1.4;
+  font-weight: 600;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .price {
   font-weight: 700;
-  color: #6366f1;
+  color: #6366f1; 
+  font-size: 1.1rem;
+  margin-top: auto;
 }
 
+/* --- ACTION BUTTON --- */
 .home-actions {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  padding-bottom: 40px;
 }
 
 .view-more-btn {
@@ -85,28 +112,45 @@
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
+  transition: opacity 0.2s ease;
 }
 
-/* MOBILE FIXES */
+.view-more-btn:hover {
+  opacity: 0.9;
+}
+
+
 @media (max-width: 1024px) {
-  .home-page {
-    margin-left: 0;
-    padding-top: 80px;
-  }
-  .featured-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  .home-page { margin-left: 0; }
+  .featured-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  .home-page {
+    margin-left: 0 !important;
+    width: 100% !important;
+    padding: 85px 15px 40px 15px; 
+  }
+
+
   .featured-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
   }
-  .product-img-holder {
-    height: 140px;
-  }
+  
   .banner {
-    padding: 40px 15px;
+    padding: 50px 15px;
+    margin-bottom: 25px;
+  }
+  
+  .banner h1 { font-size: 1.8rem; }
+  
+  .product-img-holder {
+    height: 130px; 
+  }
+  
+  .home-product-card {
+    min-height: 240px; 
   }
 }

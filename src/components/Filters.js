@@ -3,12 +3,8 @@ import "../styles/filters.css";
 export default function Filters({
   search,
   setSearch,
-  minPrice,
-  setMinPrice,
-  maxPrice,
   priceRange,
   setPriceRange,
-  setMaxPrice,
   inStock,
   setInStock,
   sortBy,
@@ -16,18 +12,23 @@ export default function Filters({
 }) {
   return (
     <div className="filters-bar">
+      
+      {/* Search Field */}
       <input
         type="text"
         placeholder="Search products..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
+
+      {/* Price Controls - Grouped for flex layout */}
       <div className="price-range">
         <input
           type="number"
           placeholder="Min $"
           value={priceRange.min}
           onChange={(e) =>
+            /* Update min only, keep existing max */
             setPriceRange((prev) => ({ ...prev, min: e.target.value }))
           }
         />
@@ -40,6 +41,8 @@ export default function Filters({
           }
         />
       </div>
+
+      {/* Stock Toggle - Wrapped in label to increase clickable area */}
       <label className="stock-toggle">
         <input
           type="checkbox"
@@ -48,6 +51,8 @@ export default function Filters({
         />
         In Stock Only
       </label>
+
+      {/* Sort Select */}
       <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
         <option value="priceDesc">Price: High → Low</option>
         <option value="priceAsc">Price: Low → High</option>

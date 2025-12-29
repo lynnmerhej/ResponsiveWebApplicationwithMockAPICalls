@@ -1,4 +1,4 @@
-/* Fade in */
+
 .fade-in {
   animation: fadeIn 0.6s ease forwards;
 }
@@ -14,7 +14,6 @@
   }
 }
 
-/* Hover lift */
 .lift-hover {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -24,7 +23,6 @@
   box-shadow: 0 20px 30px rgba(0, 0, 0, 0.4);
 }
 
-/* Button pulse (subtle) */
 .pulse {
   animation: pulse 2s infinite;
 }
@@ -41,7 +39,7 @@
   }
 }
 
-/* Shake (login error) */
+
 .shake {
   animation: shake 0.4s ease;
 }

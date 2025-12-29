@@ -39,10 +39,10 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   }
   
-  /* Search input */
+
   .filters-bar input[type="text"] {
     flex: 1;
-    min-width: 150px; /* prevents too small on mobile */
+    min-width: 150px; 
     padding: 10px 15px;
     border-radius: 50px;
     border: 1px solid #d1d5db;
@@ -55,7 +55,7 @@
     box-shadow: 0 0 8px rgba(99, 102, 241, 0.35);
   }
   
-  /* Stock toggle */
+
   .stock-toggle {
     display: flex;
     align-items: center;
@@ -67,27 +67,26 @@
   .stock-toggle input {
     accent-color: var(--primary);
     width: 18px;
-    height: 18px; /* slightly bigger for mobile touch */
+    height: 18px; 
   }
   
-  /* Price slider */
   .price-range {
     display: flex;
     align-items: center;
     gap: 8px;
-    flex-wrap: wrap; /* ensures stacking on small screens */
+    flex-wrap: wrap; 
   }
   
   .price-range input {
     width: 100px;
-    max-width: 100%; /* responsive for mobile */
+    max-width: 100%;
     padding: 8px;
     border-radius: 12px;
     border: 1px solid #d1d5db;
     outline: none;
   }
   
-  /* Mobile responsiveness */
+
   @media (max-width: 768px) {
     .filters-bar {
       flex-direction: column;

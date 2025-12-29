@@ -1,43 +1,70 @@
 import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom"; // 1. Added useNavigate
-import "../styles/sidebar.css";
+import { NavLink, useNavigate } from "react-router-dom";
+import "../styles/sidebar.css"; 
 
 export default function Sidebar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate(); // 2. Initialize navigate
+  const [isOpen, setIsOpen] = useState(false); // Controls mobile drawer state
+  const navigate = useNavigate();
 
   const toggleSidebar = () => setIsOpen(!isOpen);
   const closeSidebar = () => setIsOpen(false);
 
-  // 3. Create the handleLogout function
   const handleLogout = () => {
-    // Optional: Clear user data here
-    // localStorage.removeItem("token");
-
+    // Cleanup auth state before redirecting
+    localStorage.removeItem("auth");
     closeSidebar();
-    navigate("/login"); // 4. Redirect to login route
+    navigate("/login");
   };
 
   return (
     <>
-      {/* Hamburger Button */}
-      <button className="mobile-menu-btn" onClick={toggleSidebar}>
-        ☰
-      </button>
+      {/* MOBILE TOP BAR:
+        Hidden on Desktop via CSS. Only visible on small screens to 
+        provide the Hamburger trigger.
+      */}
+      <header className="mobile-header">
+        <button className="mobile-menu-btn" onClick={toggleSidebar}>
+          {/* Hamburger Icon */}
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+        <div className="mobile-logo">ShopLogo</div>
+      </header>
 
-      {/* Overlay */}
+      {/* BACKDROP OVERLAY:
+        Covers the main content when menu is open. Clicking it closes the menu (UX best practice).
+      */}
       <div
         className={`overlay ${isOpen ? "active" : ""}`}
         onClick={closeSidebar}
       ></div>
 
-      {/* Sidebar / Drawer */}
+      {/* SIDEBAR DRAWER:
+        On Desktop: Statically positioned on the left.
+        On Mobile: Fixed off-screen (translateX) until 'open' class is added.
+      */}
       <aside className={`sidebar ${isOpen ? "open" : ""}`}>
-        <div className="sidebar-logo">
-          <h2>ShopLogo</h2>
+        
+        {/* Sidebar Internal Header (Logo + Close Button) */}
+        <div className="sidebar-header-row">
+          <div className="sidebar-logo">
+             <h2>ShopLogo</h2>
+          </div>
+          <button className="close-btn" onClick={closeSidebar}>
+            {/* X Icon for mobile closing */}
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
         </div>
 
+        {/* Navigation Links */}
         <nav className="sidebar-nav">
+          {/* We add onClick={closeSidebar} to auto-close the drawer when a link is clicked on mobile */}
           <NavLink to="/" className="nav-item" end onClick={closeSidebar}>
             Home
           </NavLink>
@@ -46,8 +73,8 @@ export default function Sidebar() {
           </NavLink>
         </nav>
 
+        {/* Logout Section - Pushed to bottom via CSS flex-grow/margin logic */}
         <div className="sidebar-logout">
-          {/* 5. Update onClick to use handleLogout */}
           <button className="logout-btn" onClick={handleLogout}>
             Logout
           </button>

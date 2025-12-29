@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  text-align: center; /* Centers text for a cleaner vertical look */
+  text-align: center;
 }
 
 .product-card:hover {
@@ -31,7 +31,6 @@
   max-width: 90%;
   max-height: 90%;
   object-fit: contain;
-  /* FIX FOR BLURRY IMAGES: Ensures sharp edges */
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
 }
@@ -39,15 +38,13 @@
 .product-info {
   display: flex;
   flex-direction: column;
-  gap: 8px; /* Space between Title, Price, and Stock */
+  gap: 8px; 
 }
-
 .product-titles {
   font-size: 1rem;
   font-weight: 600;
   color: #111827;
   margin: 0;
-  /* Allows title to wrap if long, or use ellipsis if you prefer 1 line */
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;

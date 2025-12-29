@@ -3,15 +3,19 @@ import { useNavigate } from "react-router-dom";
 import "../styles/login.css";
 
 export default function Login() {
+  // Local state for form inputs and error feedback
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  
   const navigate = useNavigate();
 
   function handleSubmit(e) {
-    e.preventDefault();
+    e.preventDefault(); // Prevent full page reload
 
+    // Simple hardcoded check for demo purposes
     if (username === "Admin" && password === "123456") {
+      // Set persistence token so ProtectedRoute allows access
       localStorage.setItem("auth", "true");
       navigate("/");
     } else {
@@ -24,6 +28,7 @@ export default function Login() {
       <form className="login-card" onSubmit={handleSubmit}>
         <h2>Admin Login</h2>
 
+        {/* Controlled inputs to track value changes immediately */}
         <input
           placeholder="Username"
           value={username}
@@ -37,6 +42,7 @@ export default function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
+        {/* Only render error message if one exists */}
         {error && <p className="error">{error}</p>}
 
         <button type="submit">Login</button>

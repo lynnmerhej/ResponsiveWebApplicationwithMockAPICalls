@@ -1,16 +1,13 @@
-/* --- PAGE LAYOUT --- */
+
 .product-detail-page {
-  margin-left: 220px; /* Sidebar offset */
   min-height: 100vh;
   background-color: #fcfcfd;
 }
 
 .detail-wrapper {
-  /* Removed max-width and margin: 0 auto to make it full width */
   width: 100%;
 }
 
-/* --- BACK BUTTON --- */
 .back-link {
   background: none;
   border: none;
@@ -34,15 +31,12 @@
   background: #ffffff;
   padding: 40px;
   border-radius: 20px;
-  /* Shadow for depth */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-  /* Ensures it stays left-aligned and stretches */
   width: 100%;
 }
 
-/* --- LEFT COLUMN: IMAGE --- */
+
 .product-left {
-  /* Give the image a fixed wide base but let it grow */
   flex: 0 0 45%;
 }
 
@@ -53,7 +47,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 60px; /* Generous padding around the product */
+  padding: 60px; 
 }
 
 .main-image-holder img {
@@ -63,12 +57,12 @@
   object-fit: contain;
 }
 
-/* --- RIGHT COLUMN: INFO --- */
+
 .product-right {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Keeps text at the top */
+  justify-content: flex-start; 
 }
 
 .breadcrumb {
@@ -80,7 +74,7 @@
 }
 
 .product-title {
-  font-size: 3rem; /* Larger title for full-width layout */
+  font-size: 3rem; 
   font-weight: 800;
   color: #0f172a;
   margin-bottom: 15px;
@@ -104,10 +98,10 @@
   line-height: 1.8;
   color: #64748b;
   margin-bottom: 30px;
-  max-width: 800px; /* Limits text width for better readability */
+  max-width: 800px;
 }
 
-/* META INFO GRID */
+
 .product-meta-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -145,7 +139,7 @@
   font-size: 1.1rem;
   font-weight: 700;
   cursor: pointer;
-  width: fit-content; /* Keeps button from stretching full width */
+  width: fit-content; 
   transition: all 0.3s ease;
 }
 
@@ -154,11 +148,11 @@
   box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
 }
 
-/* --- MOBILE RESPONSIVENESS --- */
+
 @media (max-width: 1024px) {
   .product-detail-page {
     margin-left: 0;
-    padding: 120px 20px 40px 20px;
+    padding: 20px 20px 40px 20px;
   }
 
   .product-container {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import * as productService from "../services/productService";
+import * as productService from "../services/productService"; 
 import "../styles/home.css";
 
 export default function Home() {
@@ -12,6 +12,7 @@ export default function Home() {
       .fetchProducts()
       .then((res) => {
         if (res && res.length > 0) {
+          // Limit display to first 5 items for the "Featured" section
           setFeaturedProducts(res.slice(0, 5));
         }
       })
@@ -20,35 +21,40 @@ export default function Home() {
 
   return (
     <main className="home-page">
-      {/* 1. Banner Section */}
+      {/* Hero Banner Section */}
       <div className="banner">
         <h1>Our Shop Exclusives</h1>
         <p>Discover our exclusive products and special offers</p>
       </div>
 
       <div className="home-content">
-        {/* 2. Grid Section */}
+        {/* Featured Grid Section */}
         <div className="featured-grid">
           {featuredProducts.map((product) => (
             <div
               key={product.id}
               className="home-product-card"
+              // Navigate to details page on card click (better UX than just a button)
               onClick={() => navigate(`/products/${product.id}`)}
             >
-              <div className="thumbnail-container">
+              {/* Image container class matches CSS for correct aspect ratio */}
+              <div className="product-img-holder">
                 <img
                   src={product.thumbnail}
                   alt={product.title}
                   className="product-thumb"
                 />
               </div>
-              <h3>{product.title}</h3>
-              <p className="price">${product.price}</p>
+              
+              <div className="card-info">
+                <h3>{product.title}</h3>
+                <p className="price">${product.price}</p>
+              </div>
             </div>
           ))}
         </div>
 
-        {/* 3. Action Section */}
+        {/* Action Button: Link to full catalog */}
         <div className="home-actions">
           <button
             className="view-more-btn"
